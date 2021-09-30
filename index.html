@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>battery pravtika</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="section">
+        <div class="card">
+            <div class="battery">
+                <div class="battery_border">
+                <div class="percatange"></div>
+            </div>
+                <div class="parcent"></div>
+                <p class="text"></p>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+         navigator.getBattery().then(battery =>{
+      const percenttage = document.querySelector('.percatange'),
+            isCharging= document.querySelector(".text"),
+            parcent = document.querySelector(".parcent");
+ console.log(percenttage);
+
+            function updatebatteryAll(){
+      updateLevelInfo()
+      uppdateChargeInfo()
+  }
+updatebatteryAll()
+
+  function updateLevelInfo() {
+      percenttage.style.width = battery.level * 100 + "%";
+      parcent.textContent = battery.level * 100 + "%";
+
+  }
+  function uppdateChargeInfo(){
+      isCharging.textContent = battery.charging ? "ishlamoqda.." : ''  }
+  battery.addEventListener('levelchange', ()=>{
+      updateLevelInfo()
+  })
+  battery.addEventListener('chargingchange', ()=>{
+      uppdateChargeInfo()
+  })
+  })
+
+
+    </script>
+</body>
+</html>
